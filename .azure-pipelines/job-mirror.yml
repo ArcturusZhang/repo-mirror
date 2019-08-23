@@ -1,11 +1,11 @@
 parameters:
-  SOURCE_REPO: ${{ Build.Repository.Uri }}
-  SOURCE_BRANCH: ${{ Build.SourceBranchName }}
+  SOURCE_REPO: $(Build.Repository.Uri)
+  SOURCE_BRANCH: $(Build.SourceBranchName)
   TARGET_ENDPOINTS: ''
 
 jobs:
   - job: MirrorRepo
-    displayName: Mirror Branch ${{ parameters.SOURCE_BRANCH }}
+    displayName: Mirror Branch $(Build.SourceBranchName)
     steps:
     - checkout: none
       clean: resources
