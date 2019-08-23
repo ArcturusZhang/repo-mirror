@@ -58,8 +58,9 @@ jobs:
           ( git fetch target $TARGET_BRANCH && git checkout -b target target/$TARGET_BRANCH ) || {
             git checkout -b target
           }
-          git rebase --strategy=ours source || {
+          git rebase -s recursive -X ours source || {
             echo "Failed to rebase!" >&2
+            EXIT_CODE=2
             git reset --hard target/$TARGET_BRANCH
           }
           git push -f target refs/heads/target:refs/heads/$TARGET_BRANCH
