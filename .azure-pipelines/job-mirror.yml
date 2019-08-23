@@ -59,7 +59,7 @@ jobs:
             git checkout -b target_branch
           }
           git checkout source_branch
-          git rebase -Xours --root target_branch || {
+          git rebase -Xours --onto source_branch target_branch || {
             echo "Failed to rebase!" >&2
             EXIT_CODE=2
             git reset --hard target/$TARGET_BRANCH
