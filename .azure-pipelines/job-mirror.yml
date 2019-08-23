@@ -60,6 +60,8 @@ jobs:
           }
           git rebase -Xours source_branch target_branch || {
             echo "Failed to rebase!" >&2
+            git status
+            git diff
             EXIT_CODE=2
             git reset --hard target/$TARGET_BRANCH
           }
