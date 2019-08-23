@@ -5,7 +5,7 @@ parameters:
 
 jobs:
   - job: MirrorRepo
-    displayName: ${{ format('Mirror Branch {0}', parameters.SOURCE_BRANCH) }}
+    displayName: Mirror Branch ${{ parameters.SOURCE_BRANCH }}
     steps:
     - checkout: none
       clean: resources
@@ -15,6 +15,7 @@ jobs:
         trap "EXIT_CODE=-1" ERR
 
         env | sort
+        echo
 
         set -x
 
@@ -31,6 +32,7 @@ jobs:
         git fetch source $SOURCE_BRANCH
 
         set +x
+        echo
 
         for TARGET in $TARGET_ENDPOINTS
         do
@@ -49,6 +51,7 @@ jobs:
           git push -f target source/$SOURCE_BRANCH:refs/heads/$TARGET_BRANCH
           git remote remove target
           set +x
+          echo
         done
 
         exit $EXIT_CODE
