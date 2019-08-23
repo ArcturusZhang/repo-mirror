@@ -51,21 +51,21 @@ jobs:
 
           set -x
 
-          git checkout source
+          git checkout source_branch
           git reset --hard source/$SOURCE_BRANCH
           git remote add target $TARGET_REPO
 
-          ( git fetch target $TARGET_BRANCH && git checkout -b target target/$TARGET_BRANCH ) || {
-            git checkout -b target
+          ( git fetch target $TARGET_BRANCH && git checkout -b target_branch target/$TARGET_BRANCH ) || {
+            git checkout -b target_branch
           }
-          git rebase -Xours refs/heads/source || {
+          git rebase -Xours source_branch || {
             echo "Failed to rebase!" >&2
             EXIT_CODE=2
             git reset --hard target/$TARGET_BRANCH
           }
           git push -f target refs/heads/target:refs/heads/$TARGET_BRANCH
-          git checkout source
-          git branch rm target
+          git checkout source_branch
+          git branch rm target_branch
 
           git remote remove target
 
