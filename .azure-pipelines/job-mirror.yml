@@ -59,7 +59,7 @@ jobs:
           ( git fetch target $TARGET_BRANCH && git checkout -b target_branch target/$TARGET_BRANCH ) || {
             git checkout -b target_branch
           }
-          git rebase --strategy=ours source_branch || {
+          git rebase --strategy=theirs source_branch || {
             echo "Failed to rebase!" >&2
             git status
             git diff
