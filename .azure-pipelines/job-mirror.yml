@@ -20,7 +20,7 @@ jobs:
 
         SOURCE_REPO=${{ parameters.SOURCE_REPO }}
         SOURCE_BRANCH=${{ parameters.SOURCE_BRANCH }}
-        TARGET_ENDPOINTS=${{ parameters.TARGET_ENDPOINTS }}
+        TARGET_ENDPOINTS='${{ parameters.TARGET_ENDPOINTS }}'
 
         git init
         git config user.email "azuresdkci@microsoft.com"
