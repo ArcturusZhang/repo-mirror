@@ -5,7 +5,7 @@ parameters:
 
 jobs:
   - job: MirrorRepo
-    displayName: Mirror Branch $(Build.SourceBranchName)
+    displayName: Mirror Branch ${{ parameters.SOURCE_BRANCH }}
     steps:
     - checkout: none
       clean: resources
