@@ -4,8 +4,8 @@ parameters:
   TARGET_ENDPOINTS: ''
 
 jobs:
-  - job: MirrorRepo
-    displayName: Mirror Branch ${{ parameters.SOURCE_BRANCH }}
+  - job: ${{ format('MirrorBranch-{0}', parameters.SOURCE_BRANCH) }}
+    # displayName: Mirror Branch ${{ parameters.SOURCE_BRANCH }}
     steps:
     - checkout: none
       clean: resources
