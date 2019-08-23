@@ -15,8 +15,8 @@ steps:
 
     set -x
 
-    SOURCE_REPO=${{ coalesce(parameters.SOURCE_REPO, Build.Repository.Uri) }}
-    SOURCE_BRANCH=${{ coalesce(parameters.SOURCE_BRANCH, Build.SourceBranchName) }}
+    SOURCE_REPO=${{ coalesce(parameters.SOURCE_REPO, $(Build.Repository.Uri)) }}
+    SOURCE_BRANCH=${{ coalesce(parameters.SOURCE_BRANCH, $(Build.SourceBranchName)) }}
     TARGET_ENDPOINTS=${{ parameters.TARGET_ENDPOINTS }}
 
     git init
