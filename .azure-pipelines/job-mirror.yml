@@ -55,7 +55,7 @@ jobs:
           git reset --hard source/$SOURCE_BRANCH
           git remote add target $TARGET_REPO
 
-          [ git fetch target $TARGET_BRANCH && git checkout -b target target/$TARGET_BRANCH ] || {
+          { git fetch target $TARGET_BRANCH && git checkout -b target target/$TARGET_BRANCH } || {
             git checkout -b target
           }
           git rebase --strategy=ours source || {
