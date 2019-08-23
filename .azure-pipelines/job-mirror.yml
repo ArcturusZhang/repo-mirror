@@ -32,6 +32,7 @@ jobs:
         echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
         git remote add source $SOURCE_REPO
         git fetch source $SOURCE_BRANCH
+        git checkout -b source source/$SOURCE_BRANCH
 
         set +x
         echo
@@ -49,9 +50,22 @@ jobs:
           }
 
           set -x
+
+          git checkout source
+          git reset --hard source/$SOURCE_BRANCH
           git remote add target $TARGET_REPO
-          git push -f target source/$SOURCE_BRANCH:refs/heads/$TARGET_BRANCH
+
+          git checkout -b target target/$TARGET_BRANCH
+          git rebase --strategy=ours source || {
+            echo "Failed to rebase!" >&2
+            git reset --hard target/$TARGET_BRANCH
+          }
+          git push -f target refs/heads/target:refs/heads/$TARGET_BRANCH
+          git checkout source
+          git branch rm target
+
           git remote remove target
+
           set +x
           echo
         done
