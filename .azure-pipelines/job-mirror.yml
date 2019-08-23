@@ -63,7 +63,7 @@ jobs:
             EXIT_CODE=2
             git reset --hard target/$TARGET_BRANCH
           }
-          git push -f target refs/heads/target:refs/heads/$TARGET_BRANCH
+          git push -f target refs/heads/target_branch:refs/heads/$TARGET_BRANCH
           git checkout source_branch
           git branch rm target_branch
 
