@@ -7,7 +7,6 @@ jobs:
   - job: MirrorRepo
     variables:
       skipComponentGovernanceDetection: true
-    displayName: Mirror Branch ${{ parameters.SOURCE_BRANCH }}
     steps:
     - checkout: none
       clean: resources
