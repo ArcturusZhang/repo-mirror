@@ -5,7 +5,7 @@ parameters:
 
 jobs:
   - job: MirrorRepo
-    displayName: ${{ format("Mirror Branch {0}", parameters.SOURCE_BRANCH) }}
+    displayName: ${{ format('Mirror Branch {0}', parameters.SOURCE_BRANCH) }}
     steps:
     - checkout: none
       clean: resources
