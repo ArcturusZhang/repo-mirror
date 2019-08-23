@@ -1,0 +1,49 @@
+parameters:
+  SOURCE_REPO: ''
+  SOURCE_BRANCH: ''
+  TARGET_ENDPOINTS: ''
+  vmImage: 'ubuntu 16.04'
+
+jobs:
+- job: MirrorRepo
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  variables:
+    SOURCE_REPO: ${{ parameters.SOURCE_REPO }}
+    SOURCE_BRANCH: ${{ parameters.SOURCE_BRANCH }}
+    TARGET_ENDPOINTS: ${{ parameters.TARGET_ENDPOINTS }}
+  steps:
+  - checkout: none
+    clean: resources
+    persistCredentials: true
+  - script: |
+      EXIT_CODE=0
+      trap "EXIT_CODE=-1" ERR
+
+      env | sort
+
+      set -x
+      git init
+      git config user.email "azuresdkci@microsoft.com"
+      git config user.name "azuresdkci"
+      git config credential.helper store
+      echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
+      git remote add source $SOURCE_REPO
+      git fetch source $SOURCE_BRANCH
+      set +x
+
+      for TARGET in $TARGET_ENDPOINTS
+      do
+        TARGET_REPO=`echo $TARGET | cut -d! -f 1 -`
+        TARGET_BRANCH=`echo $TARGET | cut -d! -f 2 -`
+        echo "TARGET_REPO=$TARGET_REPO"
+        echo "TARGET_BRANCH=$TARGET_BRANCH"
+
+        set -x
+        git remote add target $TARGET_REPO
+        git push -f target source/$SOURCE_BRANCH:refs/heads/$TARGET_BRANCH
+        git remote remove target
+        set +x
+      done
+
+      exit $EXIT_CODE
