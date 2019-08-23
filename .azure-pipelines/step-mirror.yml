@@ -3,11 +3,6 @@ parameters:
   SOURCE_BRANCH: ''
   TARGET_ENDPOINTS: ''
 
-variables:
-  SOURCE_REPO: ${{ coalesce(parameters.SOURCE_REPO, Build.Repository.Uri) }}
-  SOURCE_BRANCH: ${{ coalesce(parameters.SOURCE_BRANCH, Build.SourceBranchName) }}
-  TARGET_ENDPOINTS: ${{ parameters.TARGET_ENDPOINTS }}
-
 steps:
 - checkout: none
   clean: resources
@@ -19,6 +14,11 @@ steps:
     env | sort
 
     set -x
+
+    SOURCE_REPO=${{ coalesce(parameters.SOURCE_REPO, Build.Repository.Uri) }}
+    SOURCE_BRANCH=${{ coalesce(parameters.SOURCE_BRANCH, Build.SourceBranchName) }}
+    TARGET_ENDPOINTS=${{ parameters.TARGET_ENDPOINTS }}
+
     git init
     git config user.email "azuresdkci@microsoft.com"
     git config user.name "azuresdkci"
@@ -26,6 +26,7 @@ steps:
     echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
     git remote add source $SOURCE_REPO
     git fetch source $SOURCE_BRANCH
+
     set +x
 
     for TARGET in $TARGET_ENDPOINTS
@@ -48,3 +49,4 @@ steps:
     done
 
     exit $EXIT_CODE
+
