@@ -57,24 +57,24 @@ steps:
 
         set -x
 
-        git checkout source_branch
-        git reset --hard source/$SOURCE_BRANCH
+        git checkout refs/heads/source_branch
+        git reset --hard refs/remotes/source/$SOURCE_BRANCH
         git remote remove target || true
         git remote add target $TARGET_REPO
 
         git branch -D target_branch || true
-        ( git fetch target $TARGET_BRANCH && git checkout -b target_branch target/$TARGET_BRANCH ) || {
+        ( git fetch target $TARGET_BRANCH && git checkout -b target_branch refs/remotes/target/$TARGET_BRANCH ) || {
           git checkout -b target_branch
         }
-        git rebase --strategy-option=theirs source_branch || {
+        git rebase --strategy-option=theirs refs/heads/source_branch || {
           echo "Failed to rebase!" >&2
           git status
           git diff
           EXIT_CODE=2
-          git reset --hard target/$TARGET_BRANCH
+          git reset --hard refs/remotes/target/$TARGET_BRANCH
         }
         git status
-        git push -f target target_branch:refs/heads/$TARGET_BRANCH
+        git push -f target refs/heads/target_branch:refs/heads/$TARGET_BRANCH
 
         set +x
         echo
