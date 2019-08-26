@@ -26,14 +26,14 @@ steps:
     git config user.name "azuresdkci"
     git config credential.helper store
     echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
-    git remote remove source 2>&1 > /dev/null || true
+    git remote remove source 2> /dev/null || true
     git remote add source $SOURCE_REPO
     git fetch source $SOURCE_BRANCH
 
     for SOURCE_BRANCH in $SOURCE_BRANCHES
     do
       set -x
-      git checkout --detach source_branch 2>&1 > /dev/null && git branch -D source_branch || true
+      git checkout --detach source_branch 2> /dev/null && git branch -D source_branch || true
       git checkout -b source_branch source/$SOURCE_BRANCH || {
         echo "Branch $SOURCE_BRANCH not exist on $SOURCE_REPO"
         EXIT_CODE=2
@@ -59,10 +59,10 @@ steps:
 
         git checkout source_branch
         git reset --hard refs/remotes/source/$SOURCE_BRANCH
-        git remote remove target 2>&1 > /dev/null || true
+        git remote remove target 2> /dev/null || true
         git remote add target $TARGET_REPO
 
-        git branch -D target_branch 2>&1 > /dev/null || true
+        git branch -D target_branch 2> /dev/null || true
         ( git fetch target $TARGET_BRANCH && git checkout -b target_branch refs/remotes/target/$TARGET_BRANCH ) || {
           git checkout -b target_branch
         }
