@@ -17,31 +17,31 @@ jobs:
           path: repos
         displayName: Cache Cloned Repos
 
-      - template: step-mirror.yml
-        parameters:
-          WORKING_DIRECTORY: repos/test-sync
-          SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
-          SOURCE_BRANCHES: master
-          TARGET_ENDPOINTS: |
-            https://github.com/test-repo-tih/test-sync.git!master
-            https://github.com/test-repo-tih/test-sync.git!latest
-
       # - template: step-mirror.yml
       #   parameters:
-      #     WORKING_DIRECTORY: repos/azure-rest-api-specs
-      #     SOURCE_REPO: https://github.com/Azure/azure-rest-api-specs
+      #     WORKING_DIRECTORY: repos/test-sync
+      #     SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
       #     SOURCE_BRANCHES: master
       #     TARGET_ENDPOINTS: |
-      #       https://github.com/test-repo-tih/azure-rest-api-specs!master
-      #       https://github.com/test-repo-billy/azure-rest-api-specs!master
+      #       https://github.com/test-repo-tih/test-sync.git!master
+      #       https://github.com/test-repo-tih/test-sync.git!latest
 
-      # - template: step-mirror.yml
-      #   parameters:
-      #     WORKING_DIRECTORY: repos/azure-sdk-for-go
-      #     SOURCE_REPO: https://github.com/Azure/azure-sdk-for-go
-      #     SOURCE_BRANCHES: master latest
-      #     TARGET_ENDPOINTS: |
-      #       https://github.com/test-repo-tih/azure-sdk-for-go!master
-      #       https://github.com/test-repo-billy/azure-sdk-for-go!master
-      #       https://github.com/test-repo-tih/azure-sdk-for-go!latest
-      #       https://github.com/test-repo-billy/azure-sdk-for-go!latest
+      - template: step-mirror.yml
+        parameters:
+          WORKING_DIRECTORY: repos/azure-rest-api-specs
+          SOURCE_REPO: https://github.com/Azure/azure-rest-api-specs
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
+            https://github.com/test-repo-tih/azure-rest-api-specs!master
+            https://github.com/test-repo-billy/azure-rest-api-specs!master
+
+      - template: step-mirror.yml
+        parameters:
+          WORKING_DIRECTORY: repos/azure-sdk-for-go
+          SOURCE_REPO: https://github.com/Azure/azure-sdk-for-go
+          SOURCE_BRANCHES: master latest
+          TARGET_ENDPOINTS: |
+            https://github.com/test-repo-tih/azure-sdk-for-go!master
+            https://github.com/test-repo-billy/azure-sdk-for-go!master
+            https://github.com/test-repo-tih/azure-sdk-for-go!latest
+            https://github.com/test-repo-billy/azure-sdk-for-go!latest
