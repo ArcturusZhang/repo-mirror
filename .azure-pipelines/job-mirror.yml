@@ -8,7 +8,7 @@ jobs:
     variables:
       skipComponentGovernanceDetection: true
     steps:
-    - template: setp-mirror.yml
+    - template: step-mirror.yml
       parameters:
         SOURCE_REPO: ${{ parameters.SOURCE_REPO }}
         SOURCE_BRANCHES: ${{ parameters.SOURCE_BRANCH }}
