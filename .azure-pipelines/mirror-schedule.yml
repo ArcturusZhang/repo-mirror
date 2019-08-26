@@ -2,7 +2,7 @@ jobs:
   - job: MirrorRepos
     variables:
       skipComponentGovernanceDetection: true
-      dateString: $(Date:yyyyMMdd)
+      dateString: $[format('{0:yyyyMMdd}', pipeline.startTime)]
     steps:
       - checkout: self
         clean: true
