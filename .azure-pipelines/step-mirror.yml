@@ -57,7 +57,7 @@ steps:
 
         set -x
 
-        git checkout refs/heads/source_branch
+        git checkout source_branch
         git reset --hard refs/remotes/source/$SOURCE_BRANCH
         git remote remove target 2>&1 > /dev/null || true
         git remote add target $TARGET_REPO
