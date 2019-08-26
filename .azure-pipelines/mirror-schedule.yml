@@ -2,7 +2,7 @@ jobs:
   - job: MirrorRepos
     variables:
       skipComponentGovernanceDetection: true
-      dateString: ${{ format('{0:yyyyMMdd}', pipeline.startTime) }}
+      dateString: ${{ format('{0:yyyyMMdd}', variables['Date']) }}
     steps:
       - checkout: self
         clean: true
