@@ -12,8 +12,8 @@ steps:
     EXIT_CODE=0
     trap "EXIT_CODE=-1" ERR
 
-    env | sort
     git --version
+    [ -z $(github-pat) ] && echo "github-pat is empty" && exit -1
     echo
 
     set -x
@@ -25,7 +25,6 @@ steps:
     git config user.email "azuresdkci@microsoft.com"
     git config user.name "azuresdkci"
     git config credential.helper store
-    [ -z $(github-pat) ] && echo "github-pat is empty" && exit -1
     echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
     git remote add source $SOURCE_REPO
     git fetch source $SOURCE_BRANCH
