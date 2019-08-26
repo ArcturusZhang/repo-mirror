@@ -3,8 +3,9 @@ jobs:
     variables:
       skipComponentGovernanceDetection: true
     steps:
-      - checkout: none
-        clean: resources
+      - checkout: self
+        clean: true
+        fetchDepth: 2
         persistCredentials: true
 
       - task: CacheBeta@0
