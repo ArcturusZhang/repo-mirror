@@ -3,6 +3,7 @@ jobs:
     variables:
       skipComponentGovernanceDetection: true
     steps:
+
       - template: step-mirror.yml
         parameters:
           SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
@@ -10,3 +11,11 @@ jobs:
           TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/test-sync.git!master
             https://github.com/test-repo-tih/test-sync.git!latest
+
+      - template: step-mirror.yml
+        parameters:
+          SOURCE_REPO: https://github.com/Azure/azure-rest-api-specs
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
+            https://github.com/github.com/test-repo-tih/azure-rest-api-specs!master
+            https://github.com/github.com/test-repo-billy/azure-rest-api-specs!master
