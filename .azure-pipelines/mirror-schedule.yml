@@ -2,16 +2,18 @@ jobs:
   - job: MirrorRepos
     variables:
       skipComponentGovernanceDetection: true
-      dateString: ${{ format('{0:yyyyMMdd}', variables['Date']) }}
     steps:
       - checkout: self
         clean: true
         fetchDepth: 2
         persistCredentials: true
 
+      - script: echo '##vso[task.setvariable variable=dateString]$(date +%y%m%d)'
+        displayName: Set Date Variable
+
       - task: CacheBeta@0
         inputs:
-          key: cache-repos | ${{ variables['dateString'] }} | .azure-pipelines/mirror-schedule.yml
+          key: cache-repos | $(dateString) | .azure-pipelines/mirror-schedule.yml
           path: repos
         displayName: Cache Cloned Repos
 
