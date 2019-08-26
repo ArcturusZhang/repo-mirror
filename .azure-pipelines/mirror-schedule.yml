@@ -6,8 +6,31 @@ trigger:
 pr: none
 
 schedules:
-  - cron: "0 */2 * * *"
-    batch: true
+  - cron: "*/15 * * * 0"
+    branches:
+      include: [master]
+    always: true
+  - cron: "*/15 * * * 1"
+    branches:
+      include: [master]
+    always: true
+  - cron: "*/15 * * * 2"
+    branches:
+      include: [master]
+    always: true
+  - cron: "*/15 * * * 3"
+    branches:
+      include: [master]
+    always: true
+  - cron: "*/15 * * * 4"
+    branches:
+      include: [master]
+    always: true
+  - cron: "*/15 * * * 5"
+    branches:
+      include: [master]
+    always: true
+  - cron: "*/15 * * * 6"
     branches:
       include: [master]
     always: true
