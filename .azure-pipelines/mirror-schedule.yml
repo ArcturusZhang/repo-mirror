@@ -43,5 +43,17 @@ jobs:
           TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/azure-sdk-for-go!master
             https://github.com/test-repo-billy/azure-sdk-for-go!master
+            https://github.com/AzureSDKAutomation/azure-sdk-for-go!master
             https://github.com/test-repo-tih/azure-sdk-for-go!latest
             https://github.com/test-repo-billy/azure-sdk-for-go!latest
+            https://github.com/AzureSDKAutomation/azure-sdk-for-go!latest
+
+      - template: step-mirror.yml
+        parameters:
+          WORKING_DIRECTORY: repos/azure-sdk-for-js
+          SOURCE_REPO: https://github.com/Azure/azure-sdk-for-js
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
+            https://github.com/test-repo-tih/azure-sdk-for-js!master
+            https://github.com/test-repo-billy/azure-sdk-for-js!master
+            https://github.com/AzureSDKAutomation/azure-sdk-for-js!master
