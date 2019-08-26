@@ -2,32 +2,43 @@ jobs:
   - job: MirrorRepos
     variables:
       skipComponentGovernanceDetection: true
+
+    displayName: $(SOURCE_REPO) -- $(SOURCE_BRANCHES)
+
     steps:
       - checkout: self
         clean: true
         fetchDepth: 2
         persistCredentials: true
 
-      - script: echo "##vso[task.setvariable variable=dateString]$(date +%y%m%d)"
+      - script: echo "##vso[task.setvariable variable=DATE_STRING]$(date +%y%m%d)"
         displayName: Set Date Variable
 
       - task: CacheBeta@0
         inputs:
-          key: cache-repos | $(dateString) | .azure-pipelines/*
+          key: cache-repos | $(DATE_STRING) | $(WORKING_DIRECTORY)
           path: repos
         displayName: Cache Cloned Repos
 
-      # - template: step-mirror.yml
-      #   parameters:
-      #     WORKING_DIRECTORY: repos/test-sync
-      #     SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
-      #     SOURCE_BRANCHES: master
-      #     TARGET_ENDPOINTS: |
-      #       https://github.com/test-repo-tih/test-sync.git!master
-      #       https://github.com/test-repo-tih/test-sync.git!latest
-
       - template: step-mirror.yml
         parameters:
+          WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+          SOURCE_REPO: $(SOURCE_REPO)
+          SOURCE_BRANCHES: $(SOURCE_BRANCHES)
+          TARGET_ENDPOINTS: $(TARGET_ENDPOINTS)
+
+    strategy:
+      matrix:
+
+        # test_sync:
+        #   WORKING_DIRECTORY: repos/test-sync
+        #   SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
+        #   SOURCE_BRANCHES: master
+        #   TARGET_ENDPOINTS: |
+        #     https://github.com/test-repo-tih/test-sync.git!master
+        #     https://github.com/test-repo-tih/test-sync.git!latest
+
+        azure_rest_api_specs:
           WORKING_DIRECTORY: repos/azure-rest-api-specs
           SOURCE_REPO: https://github.com/Azure/azure-rest-api-specs
           SOURCE_BRANCHES: master
@@ -35,8 +46,7 @@ jobs:
             https://github.com/test-repo-tih/azure-rest-api-specs!master
             https://github.com/test-repo-billy/azure-rest-api-specs!master
 
-      - template: step-mirror.yml
-        parameters:
+        azure_sdk_for_go:
           WORKING_DIRECTORY: repos/azure-sdk-for-go
           SOURCE_REPO: https://github.com/Azure/azure-sdk-for-go
           SOURCE_BRANCHES: master latest
@@ -48,52 +58,47 @@ jobs:
             https://github.com/test-repo-billy/azure-sdk-for-go!latest
             https://github.com/AzureSDKAutomation/azure-sdk-for-go!latest
 
-      - template: step-mirror.yml
-        parameters:
-          working_directory: repos/azure-sdk-for-js
-          source_repo: https://github.com/azure/azure-sdk-for-js
-          source_branches: master
-          target_endpoints: |
+        azure_sdk_for_js:
+          WORKING_DIRECTORY: repos/azure-sdk-for-js
+          SOURCE_REPO: https://github.com/azure/azure-sdk-for-js
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/azure-sdk-for-js!master
             https://github.com/test-repo-billy/azure-sdk-for-js!master
             https://github.com/azuresdkautomation/azure-sdk-for-js!master
 
-      - template: step-mirror.yml
-        parameters:
-          working_directory: repos/azure-sdk-for-net
-          source_repo: https://github.com/azure/azure-sdk-for-net
-          source_branches: master
-          target_endpoints: |
+        azure_sdk_for_net:
+          WORKING_DIRECTORY: repos/azure-sdk-for-net
+          SOURCE_REPO: https://github.com/azure/azure-sdk-for-net
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/azure-sdk-for-net!master
             https://github.com/test-repo-billy/azure-sdk-for-net!master
             https://github.com/azuresdkautomation/azure-sdk-for-net!master
 
-      - template: step-mirror.yml
-        parameters:
-          working_directory: repos/azure-sdk-for-python
-          source_repo: https://github.com/azure/azure-sdk-for-python
-          source_branches: master
-          target_endpoints: |
+        azure_sdk_for_python:
+          WORKING_DIRECTORY: repos/azure-sdk-for-python
+          SOURCE_REPO: https://github.com/azure/azure-sdk-for-python
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/azure-sdk-for-python!master
             https://github.com/test-repo-billy/azure-sdk-for-python!master
             https://github.com/azuresdkautomation/azure-sdk-for-python!master
 
-      - template: step-mirror.yml
-        parameters:
-          working_directory: repos/azure-sdk-for-java
-          source_repo: https://github.com/azure/azure-sdk-for-java
-          source_branches: master
-          target_endpoints: |
+        azure_sdk_for_java:
+          WORKING_DIRECTORY: repos/azure-sdk-for-java
+          SOURCE_REPO: https://github.com/azure/azure-sdk-for-java
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/azure-sdk-for-java!master
             https://github.com/test-repo-billy/azure-sdk-for-java!master
             https://github.com/azuresdkautomation/azure-sdk-for-java!master
 
-      - template: step-mirror.yml
-        parameters:
-          working_directory: repos/azure-sdk-for-ruby
-          source_repo: https://github.com/azure/azure-sdk-for-ruby
-          source_branches: master latest
-          target_endpoints: |
+        azure_sdk_for_ruby:
+          WORKING_DIRECTORY: repos/azure-sdk-for-ruby
+          SOURCE_REPO: https://github.com/azure/azure-sdk-for-ruby
+          SOURCE_BRANCHES: master latest
+          TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/azure-sdk-for-ruby!master
             https://github.com/test-repo-billy/azure-sdk-for-ruby!master
             https://github.com/azuresdkautomation/azure-sdk-for-ruby!master
