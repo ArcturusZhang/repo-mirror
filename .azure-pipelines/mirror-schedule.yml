@@ -21,7 +21,7 @@ jobs:
         parameters:
           WORKING_DIRECTORY: test-sync
           SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
-          SOURCE_BRANCHES: master latest
+          SOURCE_BRANCHES: master
           TARGET_ENDPOINTS: |
             https://github.com/test-repo-tih/test-sync.git!master
             https://github.com/test-repo-tih/test-sync.git!latest
