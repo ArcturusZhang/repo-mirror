@@ -19,7 +19,7 @@ jobs:
 
       - template: step-mirror.yml
         parameters:
-          WORKING_DIRECTORY: test-sync
+          WORKING_DIRECTORY: repos/test-sync
           SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
           SOURCE_BRANCHES: master
           TARGET_ENDPOINTS: |
