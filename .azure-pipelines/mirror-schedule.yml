@@ -2,6 +2,7 @@ jobs:
   - job: MirrorRepos
     variables:
       skipComponentGovernanceDetection: true
+      dateString: $(Date:yyyyMMdd)
     steps:
       - checkout: self
         clean: true
@@ -10,7 +11,7 @@ jobs:
 
       - task: CacheBeta@0
         inputs:
-          key: cache-repos | ${{ $(Date:yyyyMMdd) }} | .azure-pipelines/mirror-schedule.yml
+          key: cache-repos | ${{ variables['dateString'] }} | .azure-pipelines/mirror-schedule.yml
           path: repos
         displayName: Cache Cloned Repos
 
