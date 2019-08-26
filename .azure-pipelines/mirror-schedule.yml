@@ -50,10 +50,53 @@ jobs:
 
       - template: step-mirror.yml
         parameters:
-          WORKING_DIRECTORY: repos/azure-sdk-for-js
-          SOURCE_REPO: https://github.com/Azure/azure-sdk-for-js
-          SOURCE_BRANCHES: master
-          TARGET_ENDPOINTS: |
+          working_directory: repos/azure-sdk-for-js
+          source_repo: https://github.com/azure/azure-sdk-for-js
+          source_branches: master
+          target_endpoints: |
             https://github.com/test-repo-tih/azure-sdk-for-js!master
             https://github.com/test-repo-billy/azure-sdk-for-js!master
-            https://github.com/AzureSDKAutomation/azure-sdk-for-js!master
+            https://github.com/azuresdkautomation/azure-sdk-for-js!master
+
+      - template: step-mirror.yml
+        parameters:
+          working_directory: repos/azure-sdk-for-net
+          source_repo: https://github.com/azure/azure-sdk-for-net
+          source_branches: master
+          target_endpoints: |
+            https://github.com/test-repo-tih/azure-sdk-for-net!master
+            https://github.com/test-repo-billy/azure-sdk-for-net!master
+            https://github.com/azuresdkautomation/azure-sdk-for-net!master
+
+      - template: step-mirror.yml
+        parameters:
+          working_directory: repos/azure-sdk-for-python
+          source_repo: https://github.com/azure/azure-sdk-for-python
+          source_branches: master
+          target_endpoints: |
+            https://github.com/test-repo-tih/azure-sdk-for-python!master
+            https://github.com/test-repo-billy/azure-sdk-for-python!master
+            https://github.com/azuresdkautomation/azure-sdk-for-python!master
+
+      - template: step-mirror.yml
+        parameters:
+          working_directory: repos/azure-sdk-for-java
+          source_repo: https://github.com/azure/azure-sdk-for-java
+          source_branches: master
+          target_endpoints: |
+            https://github.com/test-repo-tih/azure-sdk-for-java!master
+            https://github.com/test-repo-billy/azure-sdk-for-java!master
+            https://github.com/azuresdkautomation/azure-sdk-for-java!master
+
+      - template: step-mirror.yml
+        parameters:
+          working_directory: repos/azure-sdk-for-ruby
+          source_repo: https://github.com/azure/azure-sdk-for-ruby
+          source_branches: master latest
+          target_endpoints: |
+            https://github.com/test-repo-tih/azure-sdk-for-ruby!master
+            https://github.com/test-repo-billy/azure-sdk-for-ruby!master
+            https://github.com/azuresdkautomation/azure-sdk-for-ruby!master
+            https://github.com/test-repo-tih/azure-sdk-for-ruby!latest
+            https://github.com/test-repo-billy/azure-sdk-for-ruby!latest
+            https://github.com/azuresdkautomation/azure-sdk-for-ruby!latest
