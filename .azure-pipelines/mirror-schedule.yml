@@ -13,7 +13,7 @@ jobs:
 
       - task: CacheBeta@0
         inputs:
-          key: cache-repos | $(dateString) | .azure-pipelines/mirror-schedule.yml
+          key: cache-repos | $(dateString) | .azure-pipelines/mirror-schedule.yml | .azure-pipelines/step-mirror.yml
           path: repos
         displayName: Cache Cloned Repos
 
