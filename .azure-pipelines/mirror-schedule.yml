@@ -8,7 +8,7 @@ jobs:
         fetchDepth: 2
         persistCredentials: true
 
-      - script: echo "##vso[task.setvariable variable=dateString]$(date +%y%m%d)"
+      - script: echo "##vso[task.setvariable variable=dateString]$(date +%y%m%d%H%S)"
         displayName: Set Date Variable
 
       - task: CacheBeta@0
