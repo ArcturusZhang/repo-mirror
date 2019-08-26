@@ -17,5 +17,15 @@ jobs:
           SOURCE_REPO: https://github.com/Azure/azure-rest-api-specs
           SOURCE_BRANCHES: master
           TARGET_ENDPOINTS: |
-            https://github.com/github.com/test-repo-tih/azure-rest-api-specs!master
-            https://github.com/github.com/test-repo-billy/azure-rest-api-specs!master
+            https://github.com/test-repo-tih/azure-rest-api-specs!master
+            https://github.com/test-repo-billy/azure-rest-api-specs!master
+
+      - template: step-mirror.yml
+        parameters:
+          SOURCE_REPO: https://github.com/Azure/azure-sdk-for-go
+          SOURCE_BRANCHES: master latest
+          TARGET_ENDPOINTS: |
+            https://github.com/test-repo-tih/azure-sdk-for-go!master
+            https://github.com/test-repo-billy/azure-sdk-for-go!master
+            https://github.com/test-repo-tih/azure-sdk-for-go!latest
+            https://github.com/test-repo-billy/azure-sdk-for-go!latest
