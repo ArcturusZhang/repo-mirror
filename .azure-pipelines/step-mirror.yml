@@ -73,7 +73,6 @@ steps:
           EXIT_CODE=2
           git reset --hard refs/remotes/target/$TARGET_BRANCH
         }
-        git status
         git push -f target refs/heads/target_branch:refs/heads/$TARGET_BRANCH
 
         set +x
