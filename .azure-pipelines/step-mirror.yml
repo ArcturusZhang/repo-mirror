@@ -19,12 +19,13 @@ steps:
     set -x
 
     SOURCE_REPO=${{ parameters.SOURCE_REPO }}
-    SOURCE_BRANCHES=${{ parameters.SOURCE_BRANCHES }}
+    SOURCE_BRANCHES='${{ parameters.SOURCE_BRANCHES }}'
     TARGET_ENDPOINTS='${{ parameters.TARGET_ENDPOINTS }}'
     git init
     git config user.email "azuresdkci@microsoft.com"
     git config user.name "azuresdkci"
     git config credential.helper store
+    [ -z $(github-pat) ] && echo "github-pat is empty" && exit -1
     echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
     git remote add source $SOURCE_REPO
     git fetch source $SOURCE_BRANCH
