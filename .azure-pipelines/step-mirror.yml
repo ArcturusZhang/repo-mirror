@@ -26,7 +26,7 @@ steps:
     git config user.name "azuresdkci"
     git config credential.helper store
     echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
-    git reset --hard HEAD 2> /dev/null || truee
+    git reset --hard HEAD 2> /dev/null || true
     git remote remove source 2> /dev/null || true
     git remote add source $SOURCE_REPO
     git fetch --no-tags source $SOURCE_BRANCH
