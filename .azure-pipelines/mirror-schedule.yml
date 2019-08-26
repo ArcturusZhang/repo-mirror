@@ -7,6 +7,12 @@ jobs:
         clean: resources
         persistCredentials: true
 
+      - task: CacheBeta@0
+        inputs:
+          key: cache-repos | .azure-pipelines/mirror-schedule.yml
+          path: repos
+        displayName: Cache Cloned Repos
+
       # - template: step-mirror.yml
       #   parameters:
       #     SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
