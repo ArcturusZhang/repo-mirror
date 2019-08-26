@@ -4,13 +4,13 @@ jobs:
       skipComponentGovernanceDetection: true
     steps:
 
-      - template: step-mirror.yml
-        parameters:
-          SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
-          SOURCE_BRANCHES: master latest
-          TARGET_ENDPOINTS: |
-            https://github.com/test-repo-tih/test-sync.git!master
-            https://github.com/test-repo-tih/test-sync.git!latest
+      # - template: step-mirror.yml
+      #   parameters:
+      #     SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
+      #     SOURCE_BRANCHES: master latest
+      #     TARGET_ENDPOINTS: |
+      #       https://github.com/test-repo-tih/test-sync.git!master
+      #       https://github.com/test-repo-tih/test-sync.git!latest
 
       - template: step-mirror.yml
         parameters:
