@@ -33,7 +33,7 @@ steps:
     do
       set -x
       git checkout -q `git rev-parse --verify HEAD || echo HEAD` # To enter detached-head mode
-      git branch -D source_branch || true
+      git branch -q -D source_branch || true
       git checkout -b source_branch source/$SOURCE_BRANCH || {
         echo "Branch $SOURCE_BRANCH not exist on $SOURCE_REPO"
         EXIT_CODE=2
@@ -59,10 +59,10 @@ steps:
 
         git checkout refs/heads/source_branch
         git reset --hard refs/remotes/source/$SOURCE_BRANCH
-        git remote remove target || true
+        git remote -q remove target || true
         git remote add target $TARGET_REPO
 
-        git branch -D target_branch || true
+        git branch -q -D target_branch || true
         ( git fetch target $TARGET_BRANCH && git checkout -b target_branch refs/remotes/target/$TARGET_BRANCH ) || {
           git checkout -b target_branch
         }
