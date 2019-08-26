@@ -6,7 +6,7 @@ trigger:
 pr: none
 
 schedules:
-  - cron: "* * * * *"
+  - cron: "0 */2 * * *"
     batch: true
     branches:
       include: [master]
