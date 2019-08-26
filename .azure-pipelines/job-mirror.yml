@@ -8,6 +8,9 @@ jobs:
     variables:
       skipComponentGovernanceDetection: true
     steps:
+    - checkout: none
+      clean: resources
+      persistCredentials: true
     - template: step-mirror.yml
       parameters:
         SOURCE_REPO: ${{ parameters.SOURCE_REPO }}

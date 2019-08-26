@@ -3,6 +3,9 @@ jobs:
     variables:
       skipComponentGovernanceDetection: true
     steps:
+      - checkout: none
+        clean: resources
+        persistCredentials: true
 
       # - template: step-mirror.yml
       #   parameters:
@@ -14,6 +17,7 @@ jobs:
 
       - template: step-mirror.yml
         parameters:
+          WORKING_DIRECTORY: repos/azure-rest-api-specs
           SOURCE_REPO: https://github.com/Azure/azure-rest-api-specs
           SOURCE_BRANCHES: master
           TARGET_ENDPOINTS: |
@@ -22,6 +26,7 @@ jobs:
 
       - template: step-mirror.yml
         parameters:
+          WORKING_DIRECTORY: repos/azure-sdk-for-go
           SOURCE_REPO: https://github.com/Azure/azure-sdk-for-go
           SOURCE_BRANCHES: master latest
           TARGET_ENDPOINTS: |
