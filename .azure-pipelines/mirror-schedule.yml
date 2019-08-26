@@ -3,8 +3,6 @@ jobs:
     variables:
       skipComponentGovernanceDetection: true
 
-    displayName: $(SOURCE_REPO) -- $(SOURCE_BRANCHES)
-
     steps:
       - checkout: self
         clean: true
@@ -16,7 +14,7 @@ jobs:
 
       - task: CacheBeta@0
         inputs:
-          key: cache-repos | $(DATE_STRING) | $(WORKING_DIRECTORY)
+          key: cache-repos | "$(DATE_STRING)" | "$(WORKING_DIRECTORY)"
           path: repos
         displayName: Cache Cloned Repos
 
