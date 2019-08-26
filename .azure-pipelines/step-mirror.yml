@@ -12,7 +12,7 @@ steps:
     EXIT_CODE=0
     trap "EXIT_CODE=-1" ERR
 
-    [ -z $(github-pat) ] && echo "github-pat is empty" && exit -1
+    [ -z $(github-pat) ] && echo "github-pat is empty!" && exit -1
     echo
 
     set -x
