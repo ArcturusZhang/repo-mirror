@@ -30,6 +30,7 @@ steps:
     git fetch source $SOURCE_BRANCH
 
     for SOURCE_BRANCH in $SOURCE_BRANCHES
+    do
       set -x
       git checkout `git rev-parse --verify HEAD` # To enter detached-head mode
       git branch -D source_branch || true

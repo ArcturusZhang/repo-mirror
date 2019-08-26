@@ -1,5 +1,7 @@
 jobs:
   - job: MirrorRepos
+    variables:
+      skipComponentGovernanceDetection: true
     steps:
       - template: step-mirror.yml
         parameters:
