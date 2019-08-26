@@ -26,7 +26,7 @@ steps:
     echo https://$(github-pat):x-oauth-basic@github.com > ~/.git-credentials
     git remote remove source 2> /dev/null || true
     git remote add source $SOURCE_REPO
-    git fetch source $SOURCE_BRANCH
+    git fetch --no-tags source $SOURCE_BRANCH
 
     for SOURCE_BRANCH in $SOURCE_BRANCHES
     do
@@ -61,14 +61,15 @@ steps:
         git remote add target $TARGET_REPO
 
         git branch -D target_branch 2> /dev/null || true
-        ( git fetch target $TARGET_BRANCH && git checkout -b target_branch refs/remotes/target/$TARGET_BRANCH ) || {
+        ( git fetch --no-tags target $TARGET_BRANCH && git checkout -b target_branch refs/remotes/target/$TARGET_BRANCH ) || {
           git checkout -b target_branch
         }
         git rebase --strategy-option=theirs refs/heads/source_branch || {
           echo "Failed to rebase!" >&2
+          EXIT_CODE=2
           git status
           git diff
-          EXIT_CODE=2
+          git rebase --abort
           git reset --hard refs/remotes/target/$TARGET_BRANCH
         }
         git push -f target refs/heads/target_branch:refs/heads/$TARGET_BRANCH
@@ -81,7 +82,6 @@ steps:
 
     exit $EXIT_CODE
   workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
-  failOnStderr: true
   continueOnError: true
   displayName: Mirror ${{ parameters.SOURCE_REPO }} -- ${{ parameters.SOURCE_BRANCHES }}
   timeoutInMinutes: 10
