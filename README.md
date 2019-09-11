@@ -1,1 +1,3 @@
-# repo-mirror-template
+# repo-mirror
+
+See `./mirror-schedule.yml`
