@@ -90,7 +90,9 @@ steps:
           git reset --hard refs/remotes/target/$TARGET_BRANCH
         }
         # Push target_branch
-        git push -f target target_branch:refs/heads/$TARGET_BRANCH
+        git push target target_branch:refs/heads/$TARGET_BRANCH || {
+          git push -f target target_branch:refs/heads/$TARGET_BRANCH
+        }
 
         set +x
         echo
