@@ -76,13 +76,13 @@ jobs:
     strategy:
       matrix:
 
-        # test_sync:
-        #   WORKING_DIRECTORY: repos/test-sync
-        #   SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
-        #   SOURCE_BRANCHES: master
-        #   TARGET_ENDPOINTS: |
-        #     https://github.com/test-repo-tih/test-sync.git!master
-        #     https://github.com/test-repo-tih/test-sync.git!latest
+        test_sync:
+          WORKING_DIRECTORY: repos/test-sync
+          SOURCE_REPO: https://github.com/test-repo-billy/test-sync.git
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
+            https://github.com/test-repo-tih/test-sync.git!master
+            https://github.com/test-repo-tih/test-sync.git!latest
 
         azure_rest_api_specs:
           WORKING_DIRECTORY: repos/azure-rest-api-specs
