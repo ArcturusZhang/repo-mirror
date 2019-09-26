@@ -147,19 +147,19 @@ jobs:
             https://github.com/test-repo-billy/azure-sdk-for-java!master
             https://github.com/azuresdkautomation/azure-sdk-for-java!master
 
-        azure_sdk_for_ruby:
-          WORKING_DIRECTORY: repos/azure-sdk-for-ruby
-          SOURCE_REPO: https://github.com/azure/azure-sdk-for-ruby
-          SOURCE_BRANCHES: master latest
-          TARGET_ENDPOINTS: |
-            https://github.com/Azure/azure-sdk-for-ruby-pr!master
-            https://github.com/test-repo-tih/azure-sdk-for-ruby!master
-            https://github.com/test-repo-billy/azure-sdk-for-ruby!master
-            https://github.com/azuresdkautomation/azure-sdk-for-ruby!master
-            https://github.com/Azure/azure-sdk-for-ruby-pr!latest
-            https://github.com/test-repo-tih/azure-sdk-for-ruby!latest
-            https://github.com/test-repo-billy/azure-sdk-for-ruby!latest
-            https://github.com/azuresdkautomation/azure-sdk-for-ruby!latest
+        # azure_sdk_for_ruby:
+        #   WORKING_DIRECTORY: repos/azure-sdk-for-ruby
+        #   SOURCE_REPO: https://github.com/azure/azure-sdk-for-ruby
+        #   SOURCE_BRANCHES: master latest
+        #   TARGET_ENDPOINTS: |
+        #     https://github.com/Azure/azure-sdk-for-ruby-pr!master
+        #     https://github.com/test-repo-tih/azure-sdk-for-ruby!master
+        #     https://github.com/test-repo-billy/azure-sdk-for-ruby!master
+        #     https://github.com/azuresdkautomation/azure-sdk-for-ruby!master
+        #     https://github.com/Azure/azure-sdk-for-ruby-pr!latest
+        #     https://github.com/test-repo-tih/azure-sdk-for-ruby!latest
+        #     https://github.com/test-repo-billy/azure-sdk-for-ruby!latest
+        #     https://github.com/azuresdkautomation/azure-sdk-for-ruby!latest
 
         azure_cli:
           WORKING_DIRECTORY: repos/azure-cli
@@ -168,9 +168,9 @@ jobs:
           TARGET_ENDPOINTS: |
             https://github.com/Azure/azure-cli-pr!dev
 
-        # azure_cli_extensions:
-        #   WORKING_DIRECTORY: repos/azure-cli-extensions
-        #   SOURCE_REPO: https://github.com/azure/azure-cli-extensions
-        #   SOURCE_BRANCHES: master
-        #   TARGET_ENDPOINTS: |
-        #     https://github.com/Azure/azure-cli-extensions-pr!master
+        azure_cli_extensions:
+          WORKING_DIRECTORY: repos/azure-cli-extensions
+          SOURCE_REPO: https://github.com/azure/azure-cli-extensions
+          SOURCE_BRANCHES: master
+          TARGET_ENDPOINTS: |
+            https://github.com/Azure/azure-cli-extensions-pr!master
