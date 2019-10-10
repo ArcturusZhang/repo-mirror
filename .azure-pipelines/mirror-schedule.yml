@@ -174,3 +174,4 @@ jobs:
           SOURCE_BRANCHES: master
           TARGET_ENDPOINTS: |
             https://github.com/Azure/azure-cli-extensions-pr!master
+            https://github.com/test-repo-tih/azure-cli-extensions!master
