@@ -90,7 +90,6 @@ jobs:
           SOURCE_BRANCHES: master
           TARGET_ENDPOINTS: |
             https://github.com/Azure/azure-rest-api-specs-pr!master
-            https://github.com/test-repo-tih/azure-rest-api-specs!master
             https://github.com/test-repo-billy/azure-rest-api-specs!master
 
         azure_sdk_for_go:
